@@ -50,7 +50,7 @@ object Boot extends App with PlayJsonSupport with BankAccountRequestSerializer {
             val accountStateF = BankAccountEngine.surgeEngine.aggregateFor(uuid).getState
             log.info("Get account owner's state ")
             onSuccess(accountStateF) {
-              case Some(accountState) => complete(accountState)
+              case Some(accountState) => complete(accountState.balance)
               case None => complete(StatusCodes.NotFound)
             }
           }
@@ -63,6 +63,6 @@ object Boot extends App with PlayJsonSupport with BankAccountRequestSerializer {
   val port = config.getInt("http.port")
   val bindingFuture = Http().newServerAt(host, port).bind(route)
 
-  log.info(s"Server is running on http://$host:$port")
+  log.info(s"Server is running on  http://$host:$port")
 
 }
