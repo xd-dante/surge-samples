@@ -1,5 +1,6 @@
 #!/bin/sh
-echo ## Building surge scala sample project##
+echo ## Building surge scala sample project ##
+eval $(minikube docker-env)
 cd ..
 sbt "project surge-scala-sample" "compile" "docker:publishLocal"
 echo "## Installing Helm ##"
