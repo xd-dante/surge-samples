@@ -1,5 +1,32 @@
 #!/bin/sh
-echo ## Building surge scala sample project ##
+echo "## Switching Kubectl Version to match Chasoblade"
+case "$(uname -s)" in
+
+   Darwin)
+     echo 'Mac OS X'
+     curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.21.5/bin/darwin/amd64/kubectl 
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin/kubectl 
+
+     ;;
+
+   Linux)
+     echo 'Linux'
+     curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.21.5/bin/linux/amd64/kubectl
+     chmod +x ./kubectl
+     sudo mv ./kubectl /usr/local/bin/kubectl
+     ;;
+
+   CYGWIN*|MINGW32*|MSYS*|MINGW*)
+     echo 'MS Windows'
+     ;;
+
+    *)
+     echo 'Other OS' 
+     ;;
+esac
+
+echo "## Building surge scala sample project ##"
 eval $(minikube docker-env)
 cd ..
 sbt "project surge-scala-sample" "compile" "docker:publishLocal"
