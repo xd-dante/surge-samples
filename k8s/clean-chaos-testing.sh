@@ -7,3 +7,4 @@ kubectl delete -f 'https://strimzi.io/install/latest?namespace=kafka' -n kafka
 kubectl delete namespace kafka
 kubectl delete crd chaosblades.chaosblade.io
 helm uninstall chaosblade-operator -n kube-system
+minikube delete --all

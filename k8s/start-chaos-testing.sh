@@ -25,7 +25,8 @@ case "$(uname -s)" in
      echo 'Other OS' 
      ;;
 esac
-
+echo "## Starting Minikube Cluster ##"
+minikube start --memory=8192 --kubernetes-version=v1.21.5
 echo "## Building surge scala sample project ##"
 eval $(minikube docker-env)
 cd ..
