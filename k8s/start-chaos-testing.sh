@@ -49,7 +49,8 @@ kubectl create -f bank-account-state-topic.yaml -n kafka
 echo "## Starting Scala-Sample App ##"
 kubectl create -f scala-sample.yaml -n kafka
 kubectl wait --for=condition=ready pod -l app=bank-account-scala -n kafka
-SCALA_APP_URL=$(kubectl get service scala-app -n kafka --output='jsonpath='http://''{.spec.clusterIP}':{.spec.ports[0].nodePort}')
+SCALA_APP_URL=$(minikube service --url scala-app -n kafka)
+#SCALA_APP_URL=$(kubectl get service scala-app -n kafka --output='jsonpath='http://''{.spec.clusterIP}':{.spec.ports[0].nodePort}')
 export SCALA_APP_URL=$SCALA_APP_URL
 echo "## Starting Chaos App ##"
 kubectl apply -f chaos-case-yaml
