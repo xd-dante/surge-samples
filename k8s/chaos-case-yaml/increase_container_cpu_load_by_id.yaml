@@ -11,7 +11,7 @@ spec:
     matchers:
     - name: container-names
       value:
-      - "bank-account-scala"
+      - "scala-app"
 #    - name: container-ids
 #      value:
 #      - "2ff814b246f86"
