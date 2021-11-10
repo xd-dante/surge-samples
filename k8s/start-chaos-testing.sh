@@ -57,3 +57,5 @@ kubectl apply -f chaos-case-yaml
 echo "## Starting Gatling Test App ##"
 cd ..
 sbt "project surge-gatling-sample" "compile" "Gatling / test"
+echo "## Stopping Chaos Test ##"
+kubectl delete -f chaos-case-yaml

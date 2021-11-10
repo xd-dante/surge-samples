@@ -9,6 +9,9 @@ spec:
     action: fullload
     desc: "increase container cpu load by id"
     matchers:
+    - name: container-names
+      value:
+      - "bank-account-scala"
 #    - name: container-ids
 #      value:
 #      - "2ff814b246f86"

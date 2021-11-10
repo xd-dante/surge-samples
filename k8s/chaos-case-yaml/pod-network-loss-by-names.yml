@@ -1,23 +1,21 @@
 apiVersion: chaosblade.io/v1alpha1
 kind: ChaosBlade
 metadata:
-  name: cpu-load
+  name: pod-network-loss-by-names
 spec:
   experiments:
   - scope: pod
-    target: cpu
-    action: fullload
-    desc: "increase node cpu load by names"
+    target: network
+    action: loss
+    desc: "pod network loss"
     matchers:
-#    - name: name
-#      value:
-#      - "bank-account-scala"
-    - name: cpu-percent
-      value:
-      - "80"
     - name: labels
       value:
       - "app=bank-account-scala"
+    - name: percent
+      value: ["1"]
+    - name: interface
+      value: ["eth0"]
     - name: namespace
       value:
       - "kafka"
